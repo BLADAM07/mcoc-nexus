@@ -5,7 +5,7 @@ from typing import Dict, List, Any, Optional
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATASET_PATH = os.path.join(BASE_DIR, "assest", "excle", "MCOC_dataset.xlsx")
-IMAGES_DIR = os.path.join(BASE_DIR, "assest", "images")
+IMAGES_DIR = os.path.join(BASE_DIR, "frontend", "public", "images")
 CLASSES_DIR = os.path.join(IMAGES_DIR, "classes")
 
 def normalize_key(s: str) -> str:

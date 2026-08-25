@@ -28,9 +28,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-if os.path.exists(IMAGES_DIR):
-    app.mount("/images", StaticFiles(directory=IMAGES_DIR), name="images")
-
 MCOC_DATA: Dict[str, Any] = {}
 
 def serialize_mongo(doc):

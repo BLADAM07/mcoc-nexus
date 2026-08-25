@@ -24,7 +24,7 @@ def main():
         cwd=BASE_DIR
     )
     
-    time.sleep(2)
+    time.sleep(6)
     
     # 2. Start Frontend Vite Dev Server
     print("[+] Starting Vite Frontend on http://localhost:5173...")
