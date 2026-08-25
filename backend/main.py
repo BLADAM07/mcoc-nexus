@@ -192,6 +192,39 @@ def get_champions(search: Optional[str] = Query(None), champion_class: Optional[
 @app.get("/api/immunities")
 def get_immunities(): return MCOC_DATA.get("immunities", [])
 
+@app.get("/api/tier-lists")
+def get_tier_lists(): return MCOC_DATA.get("story_tiers", [])
+
+@app.get("/api/duel-targets")
+def get_duel_targets(): return MCOC_DATA.get("duel_targets", [])
+
+@app.get("/api/glossary")
+def get_glossary(): return MCOC_DATA.get("glossary", [])
+
+@app.get("/api/tags")
+def get_tags(): return {"all_tags": MCOC_DATA.get("all_tags", []), "categories": MCOC_DATA.get("tags_by_category", {})}
+
+@app.get("/api/upgrade-plan")
+def get_upgrade_plan(user: Dict[str, Any] = Depends(get_current_user)):
+    db = get_db()
+    plans = list(db.upgrade_plans.find({"user_id": user["user_id"]}))
+    roster_ids = [ObjectId(p["roster_id"]) for p in plans if len(p["roster_id"]) == 24]
+    rosters = list(db.user_roster.find({"_id": {"$in": roster_ids}}))
+    roster_map = {str(r["_id"]): r for r in rosters}
+    
+    results = []
+    for p in plans:
+        r = roster_map.get(p["roster_id"])
+        if not r: continue
+        p = serialize_mongo(p)
+        p["champion_name"] = r["champion_name"]
+        p["champion_class"] = r["champion_class"]
+        p["image"] = resolve_champion_image(r["champion_name"], r["champion_class"])
+        p["rarity"] = r["rarity"]
+        p["current_rank"] = r["current_rank"]
+        results.append(p)
+    return results
+
 @app.get("/api/roster")
 def get_user_roster(user: Dict[str, Any] = Depends(get_current_user)):
     db = get_db()
