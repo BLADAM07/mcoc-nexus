@@ -9,7 +9,7 @@ from bson.objectid import ObjectId
 
 from backend.database import init_db, get_db
 from backend.auth import hash_password, verify_password, create_token, decode_token
-from backend.data_loader import load_all_mcoc_data, resolve_champion_image
+from backend.data_loader import resolve_champion_image
 from backend.email_service import (
     is_valid_email, generate_otp, send_otp_email, send_welcome_email,
     validate_password_rules, send_password_reset_otp_email, send_password_changed_email
@@ -54,7 +54,16 @@ def startup_event():
     global MCOC_DATA
     init_db()
     db = get_db()
-    MCOC_DATA = load_all_mcoc_data()
+    
+    # Load data instantly from pre-parsed JSON instead of heavy Excel parsing
+    data_path = os.path.join(os.path.dirname(__file__), "mcoc_data.json")
+    try:
+        import json
+        with open(data_path, "r", encoding="utf-8") as f:
+            MCOC_DATA = json.load(f)
+    except Exception as e:
+        print(f"Error loading {data_path}: {e}")
+        MCOC_DATA = {}
     print(f"[+] Cached {len(MCOC_DATA['champions'])} champions.")
     
     adam = db.users.find_one({"username": "BL_ADAM_07"})
