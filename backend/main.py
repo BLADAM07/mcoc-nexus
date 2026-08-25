@@ -28,7 +28,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-MCOC_DATA: Dict[str, Any] = {}
 
 def serialize_mongo(doc):
     if not doc: return None
@@ -49,22 +48,14 @@ def get_admin_user(current_user: Dict[str, Any] = Depends(get_current_user)) -> 
         raise HTTPException(status_code=403, detail="Admin privileges required")
     return current_user
 
+from backend.mcoc_data_module import MCOC_DATA
+
 @app.on_event("startup")
 def startup_event():
-    global MCOC_DATA
     init_db()
     db = get_db()
     
-    # Load data instantly from pre-parsed JSON instead of heavy Excel parsing
-    data_path = os.path.join(os.path.dirname(__file__), "mcoc_data.json")
-    try:
-        import json
-        with open(data_path, "r", encoding="utf-8") as f:
-            MCOC_DATA = json.load(f)
-    except Exception as e:
-        print(f"Error loading {data_path}: {e}")
-        MCOC_DATA = {}
-    print(f"[+] Cached {len(MCOC_DATA['champions'])} champions.")
+    print(f"[+] Cached {len(MCOC_DATA.get('champions', []))} champions.")
     
     adam = db.users.find_one({"username": "BL_ADAM_07"})
     if not adam:
