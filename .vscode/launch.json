@@ -1,0 +1,21 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "🚀 Run Full-Stack (Backend + Frontend)",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/run_app.py",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "🐍 Backend: FastAPI",
+      "type": "python",
+      "request": "launch",
+      "module": "uvicorn",
+      "args": ["main:app", "--reload", "--host", "127.0.0.1", "--port", "8000"],
+      "cwd": "${workspaceFolder}/backend",
+      "console": "integratedTerminal"
+    }
+  ]
+}
