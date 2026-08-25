@@ -7,8 +7,8 @@ Usage:
 """
 import sys
 import time
-from database import get_db
-from auth import hash_password
+from backend.database import get_db
+from backend.auth import hash_password
 from bson.objectid import ObjectId
 
 def serialize_mongo(doc):

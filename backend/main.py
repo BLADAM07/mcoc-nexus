@@ -7,10 +7,10 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from bson.objectid import ObjectId
 
-from database import init_db, get_db
-from auth import hash_password, verify_password, create_token, decode_token
-from data_loader import load_all_mcoc_data, resolve_champion_image
-from email_service import (
+from backend.database import init_db, get_db
+from backend.auth import hash_password, verify_password, create_token, decode_token
+from backend.data_loader import load_all_mcoc_data, resolve_champion_image
+from backend.email_service import (
     is_valid_email, generate_otp, send_otp_email, send_welcome_email,
     validate_password_rules, send_password_reset_otp_email, send_password_changed_email
 )
