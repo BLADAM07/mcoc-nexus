@@ -1,0 +1,19 @@
+Sheets: ['Immunity', 'Chamipons_tag', 'Story champions', 'Upgrade Plan', 'Champion Plane', 'Main', 'Grouped by Tag', 'Grouped by Category', 'Act 8 Guide']
+
+--- Story champions ---
+('S-Tier', None, None, None, None)
+('Hercules', 'Serpent', 'Hulking', 'CGR', 'VOX')
+('Kate Bishop', 'Bullseye', 'Hit Mokey', 'Yelena Belova', 'NickFury')
+('Onslaught', 'Archangle', 'Magneto', 'Domino', 'Apocalypes')
+('Kushala', 'Doom', 'BLCV', 'Wiccan', 'Nicro')
+('Silk', 'Photon', 'Human Tourch', 'Scorpion', 'Spider-Ham')
+('Nimord', 'shuri', 'Infamous Iron man', 'VIV Vision', 'IronHeart')
+
+--- Act 8 Guide ---
+(None, 'Act 8', 'Easy path for competition', None, None, None, None)
+(None, None, '8.1.1', 'Node Path', None, None, 'Refer Video: https://youtu.be/BVAsr0KLdCY?si=GtUISIYCTFSm9h3b')
+(None, None, None, 'S.no', 'Node', 'Effect', None)
+(None, None, None, 1.0, 'Defective Defense', 'Blocking attacks have a 100% chance to apply a Disorient Debuff to the Attacker, reducing Block Proficiency and Defensive Ability Accuracy by 25% for 12 seconds.\nThe chance is reduced by 50% if the block was Well-Timed.\nThe Attacker can dash back and hold block for 1.2 seconds to remove one of these Debuffs.', None)
+(None, None, None, 2.0, 'DISARM – Heavy Attack', 'Whenever the Attacker knocks down the Defender with a Heavy Attack, any Weapon Node active on the Defender is disabled and enters cooldown for 20 seconds, then reactivates.\nDefender cannot be Disarmed again for 10 seconds after reactivation.', None)
+(None, None, None, 3.0, 'WEAPON – Exceptional X-Gene', 'Whenever the Attacker is inflicted with a Debuff, the Defender gains an indefinite Passive increasing their Special Attack by 25%. Whenever a Debuff is Purified, gain another Passive.', None)
+(None, None, None, 4.0, 'UNARMED – Heavy Attacks', "While the Defender's Weapon Node is on Cooldown, they take 600% more damage from Heavy Attacks.", None)

@@ -1,0 +1,14 @@
+@app.post("/api/node-solver")
+def solve_node(req: NodeSolverRequest):
+    champions = MCOC_DATA.get("champions", [])
+    if not req.debuffs:
+        return {"matching_champions": []}
+    
+    matches = []
+    for c in champions:
+        c_immunities = c.get("immunities", [])
+        # Check if champion has ALL requested immunities
+        if all(deb in c_immunities for deb in req.debuffs):
+            matches.append(c)
+            
+    return {"matching_champions": matches}
